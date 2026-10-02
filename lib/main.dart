@@ -17,24 +17,6 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-      ),
       home: ConsultaCepPage(),
     );
   }
@@ -43,13 +25,17 @@ class ConsultaCepPage extends StatefulWidget{
   const ConsultaCepPage({super.key});
 
   @override
-  State<ConsultaCepPage createState() => _ConsultaCepPage();
+  State<ConsultaCepPage> createState() => _ConsultaCepPage();
 }
 class _ConsultaCepPage extends State<ConsultaCepPage>{
-
+  TextEditingController cepController = TextEditingController();
+  void consultarCep(){}
     Widget build(BuildContext context){
       return Scaffold(
-        appBar: AppBar(title: const Text("Consulta Cep"),),
+        appBar: AppBar(
+          title: const Text("Consulta Cep"),
+          backgroundColor: Colors.blue,
+        ),
         body: Padding(
           padding: const EdgeInsets.all(20),
 
@@ -57,20 +43,19 @@ class _ConsultaCepPage extends State<ConsultaCepPage>{
             children: [
               TextField(
                 controller: cepController,
-                keybordType: TextInputType.number,
-                decoration: const ImputDecoretion(
-                  labelText: "Digite o CEP" ,
-                  border: OutlineImputborder()
-                )
-                ,)
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  labelText: "Digite seu CEP",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 20),
 
-                  const SinzedBox(height: 20),
-
-                  ElevatedButton(onPressed: consultarCep, child: child)
+              ElevatedButton(onPressed: consultarCep, child: const Text("Consultar")),
             ],
           ),
-        )
-      )
+        ),
+      );
     }
 }
 
